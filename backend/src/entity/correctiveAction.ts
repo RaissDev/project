@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class CorrectAction {
+export class CorrectiveAction {
     @PrimaryGeneratedColumn()
     id!: number;
     @Column()
