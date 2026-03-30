@@ -7,9 +7,12 @@ export class Inspection {
     @Column()
     date!: Date;
     @Column()
-    status!: string;
+    type_actife!: string;
+    @Column()
+    inspecteur!: string;
     @Column()
     priority!: string;
     @Column()
-    descreption!: string;
+    description!: string;
+    
 }

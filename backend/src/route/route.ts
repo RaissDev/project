@@ -5,13 +5,13 @@ import cors from "cors";
 import { users } from "../entity/users";
 import { Anomaly } from "../entity/anomaly";
 import { Asset } from "../entity/asset";
-import { CorrectiveAction } from "../entity/correctiveAction";
 import { Inspection } from "../entity/inspection";
 const port = 3004;
 const app = express();
 const router = Router();
 router.use(cors());
 router.use(express.json());
+app.use(router);
 
 router.get("/users", async (req, res) => {
   const user = await AppDataSource.getRepository(users).find();
@@ -28,14 +28,26 @@ router.get("/asset", async (req, res) => {
   res.json(asset);
 });
 
-router.get("/correctivtAction", async (req, res) => {
-  const correctAction = await AppDataSource.getRepository(CorrectiveAction).find();
-  res.json(correctAction);
-});
+// router.get("/correctivtAction", async (req, res) => {
+//   const correctAction = await AppDataSource.getRepository(CorrectiveAction).find();
+//   res.json(correctAction);
+// });
 
 router.get("/inspection", async (req, res) => {
   const inspection = await AppDataSource.getRepository(Inspection).find();
   res.json(inspection);
+});
+
+router.post("/inspection/add", async (req, res) => {
+  try {
+    const repo = AppDataSource.getRepository(Inspection);
+    const newInspection = repo.create(req.body);
+    await repo.save(newInspection);
+    res.json(newInspection);
+  } catch (error) {
+    console.error("Error creating inspection:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 AppDataSource.initialize()

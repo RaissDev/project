@@ -1,0 +1,51 @@
+<div class="container items-center justify-center]">
+    <div class="mx-[200px] mt-[80px]">
+        <h1 class="text-red-500 font-bold text-center">Add Inspection</h1>
+        <label for="date_inspection" class="text-gray-500">Date de l'inspection <span class="text-red-600 font-bold">*</span>
+            <input type="date" placeholder="Date de l'inspection" class="inputt" [value]="date | date:'yyyy-MM-dd'"
+                [(ngModel)]="date" required>
+        </label>
+        <section>
+            <label class="text-gray-500">Type d'activité <span class="text-red-600 font-bold">*</span></label>
+            <select name="type_actife" class="inputt" [(ngModel)]="type_actife_selected" required>
+                <option value="">Please choose an option</option>
+                <option [value]="a" *ngFor="let a of type_actife">{{a}}</option>
+            </select>
+        </section>
+
+
+        <section>
+            <label for="inspecteur" class="text-gray-500">Inspecteur <span class="text-red-600 font-bold">*</span></label>
+            <select name="inspecteur" class="inputt text-gray-500" [(ngModel)]="inspecteur" required>
+                <option value="">choisissez un inspecteur</option>
+                <option *ngFor="let a of type_actife" [value]="a">{{a}}</option>
+            </select>
+        </section>
+
+        <section class="text-gray-500">
+            <label for="type_actife" class="text-gray-500">Priorité <span class="text-red-600 font-bold">*</span></label>
+            <select name="type_actife" id="type_actife" class="inputt" [(ngModel)]="priorite_selected" required>
+                <option value="">choisissez une priorité <span class="text-red-600 font-bold">*</span></option>
+                <option *ngFor="let p of priorite" [value]="p" [value]="p">{{p}}</option>
+            </select>
+        </section>
+
+        <div>
+            <label for="description" class="text-gray-500">Description <span class="text-red-600 font-bold">*</span></label>
+            <textarea placeholder="Description" class="inputt" [(ngModel)]="description" required></textarea>
+        </div>
+        <div class="center_dev mt-10">
+            <label for="file" class="text-gray-500">
+                Pièces jointes <span class="text-red-600 font-bold">*</span>
+                <input type="file" multiple id="file" name="file" class="inputt" required>
+            </label>
+        </div>
+    </div>
+    <div class="center_dev mt-5">
+        <button (click)="addInspection()" class="btn">
+            Ajouter
+        </button>
+        <button class="btn">Annuler</button>
+    </div>
+
+</div>

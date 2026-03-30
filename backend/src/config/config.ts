@@ -3,7 +3,6 @@ import { DataSource } from "typeorm";
 import { users } from "../entity/users";
 import { Anomaly } from "../entity/anomaly";
 import { Asset } from "../entity/asset";
-import { CorrectAction } from "../entity/correctiveAction";
 import { Inspection } from "../entity/inspection";
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -14,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: "GMO",
   synchronize: true,
   logging: true,
-  entities: [users, Anomaly, Asset, CorrectAction, Inspection],
+  entities: [users, Anomaly, Asset, Inspection],
   subscribers: [],
   migrations: [],
 });
