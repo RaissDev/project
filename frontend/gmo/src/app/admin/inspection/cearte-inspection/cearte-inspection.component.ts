@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminServerService } from '../../../admin-server.service';
-import { GoogleMap } from '@angular/google-maps';
-import { BrowserModule } from '@angular/platform-browser';
+  
 @Component({
   selector: 'app-cearte-inspection',
   standalone: true,
-  imports: [FormsModule, CommonModule, GoogleMap],
+  imports: [FormsModule, CommonModule],
   templateUrl: './cearte-inspection.component.html',
   styleUrl: './cearte-inspection.component.css',
 })
