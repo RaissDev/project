@@ -38,6 +38,21 @@ router.get("/inspection", async (req, res) => {
   res.json(inspection);
 });
 
+router.delete("/inspection/delete/:id", async (req, res) => {
+  try {
+    const repo = AppDataSource.getRepository(Inspection);
+    const result = await repo.delete(req.params.id);
+    if (result.affected === 0) {
+      res.status(404).json({ error: "Inspection not found" });
+    } else {
+      res.json({ message: "Inspection deleted successfully" });
+    }
+  } catch (error) {
+    console.error("Error deleting inspection:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 router.post("/inspection/add", async (req, res) => {
   try {
     const repo = AppDataSource.getRepository(Inspection);

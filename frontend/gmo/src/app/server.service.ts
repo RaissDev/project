@@ -7,4 +7,8 @@ export class ServerService {
 
   constructor(private http: HttpClient) {  }
   url = 'http://localhost:3004/';
+
+  getInspectionList() {
+    return this.http.get<any[]>(this.url + 'inspection-list');
+  }
 }

@@ -1,1 +1,46 @@
-<p>inspection-list works!</p>
+<!-- id!: number;
+    @Column()
+    date!: Date;
+    @Column()
+    type_actife!: string;
+    @Column()
+    inspecteur!: string;
+    @Column()
+    priority!: string;
+    @Column()
+    description!: string; -->
+
+<div class="container"> 
+    <div class="bg-white p-4 rounded-lg shadow-md mx-28 mt-28 xs:mx-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40">
+  <h2 class="text-red-500 text-center font-extrabold my-4">Inspection List</h2>
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="border-solid border-2 border-blue-300 border-t-2" >
+        <tr > 
+            <th >Date</th>
+            <th>Type Actife</th>
+            <th>Inspecteur</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr >
+        </thead>
+        <tbody class="border-b-2 border-blue-300">
+        <tr *ngFor="let inspection of inspectionList">
+            <td>{{ inspection.date | date }}</td>
+            <td>{{ inspection.type_actife }}</td>
+            <td>{{ inspection.inspecteur }}</td>
+            <td>{{ inspection.priority }}</td>
+            <td>{{ inspection.description }}</td>
+            <td>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >
+                    Edit
+                </button>
+                <button (click)="deleteInspection(inspection.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

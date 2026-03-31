@@ -13,6 +13,9 @@ export class AdminServerService {
   gitInspection(){
     return this.http.get(this.url + 'inspection');
   }
+  deleteInspection(id:any){
+    return this.http.delete(this.url + 'inspection/delete/' + id);
+  }
 
   addInspection(data:any){
     return this.http.post(this.url + 'inspection/add', data);
