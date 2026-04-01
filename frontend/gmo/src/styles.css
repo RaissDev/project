@@ -20,4 +20,7 @@ body{
     .center_dev{
         @apply flex justify-center flex-row items-center;
     }   
+    .btnt{
+        @apply text-white font-bold h-7 w-[60px] rounded;
+    }
 }

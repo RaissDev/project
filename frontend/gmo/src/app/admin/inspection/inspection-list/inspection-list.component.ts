@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminServerService } from '../../../admin-server.service';
+import { RouterLink, RouterOutlet } from "@angular/router";
 @Component({
   selector: 'app-inspection-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './inspection-list.component.html',
   styleUrl: './inspection-list.component.css'
 })

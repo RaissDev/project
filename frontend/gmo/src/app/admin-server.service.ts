@@ -20,4 +20,8 @@ export class AdminServerService {
   addInspection(data:any){
     return this.http.post(this.url + 'inspection/add', data);
   }
+
+  UpdateInspection(id:any, data:any){
+    return this.http.put(this.url + 'inspection/update/' + id, data);
+  }
 }

@@ -65,6 +65,21 @@ router.post("/inspection/add", async (req, res) => {
   }
 });
 
+router.put("/inspection/update/:id", async (req, res) => {
+  try {
+    const repo = AppDataSource.getRepository(Inspection); 
+    const inspection = await repo.findOneBy({ id: parseInt(req.params.id) });
+    if (!inspection) {
+      return res.status(404).json({ error: "Inspection not found" });
+    }
+    repo.merge(inspection, req.body);
+    const updatedInspection = await repo.save(inspection);
+    res.json(updatedInspection);
+  } catch (error) {
+    console.error("Error updating inspection:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 AppDataSource.initialize()
   .then(() => {
     console.log("Data Source has been initialized!");
