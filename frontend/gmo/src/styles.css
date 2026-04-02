@@ -23,4 +23,7 @@ body{
     .btnt{
         @apply text-white font-bold h-7 w-[60px] rounded;
     }
+    .btntMS{
+        @apply text-white h-5 ;
+    }
 }

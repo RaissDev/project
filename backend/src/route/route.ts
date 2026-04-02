@@ -18,6 +18,33 @@ router.get("/users", async (req, res) => {
   res.json(user);
 });
 
+
+router.post("/users/add", async (req, res) => {
+  try {
+    const repo = AppDataSource.getRepository(users);
+    const newUser = repo.create(req.body);
+    await repo.save(newUser);
+    res.json(newUser);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+router.delete("/users/delete/:id" , async (req , res)=>{
+  try{
+    const repo = AppDataSource.getRepository(users)
+    const result = await  repo.delete(req.params.id)
+    if (result.affected === 0) {
+      res.status(404).json({ error: "Inspection not found" });
+    } else {
+      res.json({ message: "Inspection deleted successfully" });
+    }
+  }catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+})
+
 router.get("/anomaly", async (req, res) => {
   const anomaly = await AppDataSource.getRepository(Anomaly).find();
   res.json(anomaly);

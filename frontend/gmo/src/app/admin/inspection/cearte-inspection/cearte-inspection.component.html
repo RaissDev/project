@@ -26,7 +26,7 @@
             <label for="type_actife" class="text-gray-500">Priorité <span class="text-red-600 font-bold">*</span></label>
             <select name="type_actife" id="type_actife" class="inputt" [(ngModel)]="priorite_selected" required>
                 <option value="">choisissez une priorité <span class="text-red-600 font-bold">*</span></option>
-                <option *ngFor="let p of priorite" [value]="p" [value]="p">{{p}}</option>
+                <option *ngFor="let p of priorite" [value]="p">{{p}}</option>
             </select>
         </section>
 

@@ -11,6 +11,8 @@ export class users {
     @Column()
     password!:string;
     @Column()
+    phone!:string;
+    @Column()
     role!:string;
 }
 

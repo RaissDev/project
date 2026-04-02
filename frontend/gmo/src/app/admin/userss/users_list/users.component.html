@@ -1,1 +1,47 @@
-<p>users works!</p>
+<div class="container">
+    <div class="bg-white p-4 rounded-lg shadow-md mx-28 mt-28 
+    sm:w-fit sm:mx-2
+    md:mx-auto
+    lg:mx-24 
+    xl:mx-48
+    ">
+        <table class="w-full text-sm items-center text-center 
+        sm:text-xs
+        md:text-sm
+        lg:text-sm
+        xl:text-sm ">
+            <thead class="border-solid border-b-2 bg-blue-400 text-white border-blue-300
+            sm:text-xs sm:text-center
+            md:text-base">
+                <tr>
+                    <th class="sm:px-1">id</th>
+                    <th class="sm:px-1">Name</th>
+                    <th class="sm:px-1">Email</th>
+                    <th class="sm:px-1">Password</th>
+                    <th class="sm:px-1">Number</th>
+                    <th class="sm:px-1">Role</th>
+                    <th class="sm:px-1">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td> {{user.id}} </td>
+                    <td> {{user.name}} </td>
+                    <td> {{user.email}} </td>
+                    <td> {{user.password}} </td>
+                    <td> {{user.phone}} </td>
+                    <td> {{user.role}} </td>
+                    <td class="grid grid-cols-2 gap-4 py-3 px-4 text-left">
+                        <!-- <button [routerLink]="['/update-inspection', inspection.id]" class="bg-blue-500 hover:bg-blue-700 btnt" >
+                    Edit
+                </button> -->
+                        <button (click)="deleteUser(user.id)" class="bg-red-500 hover:bg-red-700 btnt
+                        sm:btntMS">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
