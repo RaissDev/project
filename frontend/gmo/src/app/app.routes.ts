@@ -4,11 +4,13 @@ import { InspectionListComponent } from './admin/inspection/inspection-list/insp
 import { UpdateInspectionComponent } from './admin/inspection/update-inspection/update-inspection.component';
 import { UsersComponent } from './admin/userss/users_list/users.component';
 import { UserCreateComponent } from './admin/userss/user-create/user-create.component';
+import { UserUpdateComponent } from './admin/userss/user-update/user-update.component';
 export const routes: Routes = [
     {path: '', component: CearteInspectionComponent},
     {path:'inspection-list', component: InspectionListComponent},
     {path: 'create-inspection', component: CearteInspectionComponent},
     {path: 'update-inspection/:id', component: UpdateInspectionComponent},
     {path: 'create-user', component: UserCreateComponent},
-    {path: 'list-users' , component:UsersComponent}
+    {path: 'list-users' , component:UsersComponent},
+    {path: 'update-users/:id' ,component:UserUpdateComponent}
 ];

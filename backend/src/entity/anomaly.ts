@@ -10,6 +10,7 @@ export class Anomaly {
     status!: string;
     @Column()
     deadline!: Date;
-
+    @Column()
+    inspection_id!:number
 }
 

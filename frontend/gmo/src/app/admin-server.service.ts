@@ -34,4 +34,12 @@ export class AdminServerService {
   getUsers(){
     return this.http.get(this.url + 'users')
   }
+
+  deleteUser(id:number){
+    return this.http.delete(`${this.url}users/delete/${id}`)
+  }
+
+  updateUser(id:number , data:any){
+    this.http.put(`${this.url}users/update/${id}`,data);
+  }
 }

@@ -1,21 +1,21 @@
-<div class="container max-w-full sticky top-0">
-    <div class=" bg-[#3b589c] h-[100px] w-[100%] items-center 
+<div class="container max-w-full top-0">
+    <div class=" bg-[#3b589c] h-[100px] items-center 
             justify-center bg-[url('assets/pictures/ship.png')] bg-no-repeat bg-cover
-            text-white grid grid-cols-2 gap-[440px] space-around 
+            text-white grid grid-cols-2 space-around 
             ">
-        <div>
-            <h1 class="text-4xl font-bold">Tanger Med</h1>
-        </div>
 
-        <nav class="text-[#4c78df] gap-[20px] flex items-center justify-center">
-            <a href=""
-                class=" hover:text-white hover:border-b-4 hover:border-blue-500 hover:mt-8 hover:pb-6 hover:font-bold">Dash
-                Bord</a>
-            <a href="">Inspection</a>
-            <a href="">Users</a>
-            <a href="">Anomaly</a>
-            <a>Asset</a>
-        </nav>
+
     </div>
-
-</div>
+    <div class="bg-blue-400 h-screen w-[250px] fixed left-0 top-0">
+        <div >
+            <h1 class="text-gray-50 text-xl font-bold text-center mb-5">TangerMed</h1>
+            <div class="grid grid-cols-1 justify-center items-center">
+                <button [routerLink]="['list-users']" >Users</button>
+                <button [routerLink]="['inspection-list']">Inspection</button>
+                <button>Anomaly</button>
+            </div>
+            <div class="ml-[20px] ">
+                    <router-outlet></router-outlet>
+            </div>
+                    
+        </div>

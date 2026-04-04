@@ -1,10 +1,13 @@
 <div class="container mx-auto my-10 px-[180px] bg-white rounded shadow-md
     sm:px-6 lg:px-8 xs:px-2">
     <h1 class="text-2xl font-bold mb-4 text-red-600 text-center">Create User</h1>
-    <div class="grid grid-cols-2 gap-4 mx-auto">
+    <div class="grid grid-cols-2 gap-4 mx-auto
+        xs:grid-cols-1
+        md:grid-cols-2">
         <div class="mb-4 ">
             <label for="username" class="block text-gray-700 font-bold mb-2">Name & last name</label>
-            <input type="text" id="username" class="inputt" placeholder="Enter the name and last name" [(ngModel)]="name">
+            <input type="text" id="username" class="inputt" placeholder="Enter the name and last name"
+                [(ngModel)]="name">
         </div>
         <div class="mb-4">
             <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
@@ -25,10 +28,10 @@
                 <option *ngFor="let r of role" [value]="r">{{ r }}</option>
             </select>
         </div>
-        </div>
-        <div class="center_dev pb-4">
-            <button class="btn justify-center" (click)="createUser() ">Create User</button>
-        </div>
-                
-
     </div>
+    <div class="center_dev pb-4">
+        <button class="btn justify-center" (click)="createUser() ">Create User</button>
+    </div>
+
+
+</div>

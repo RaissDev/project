@@ -14,5 +14,9 @@ export class Inspection {
     priority!: string;
     @Column()
     description!: string;
+    @Column()
+    inspecteur_id!:number
+    @Column()
+    asset_id!:number
     
 }

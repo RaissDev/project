@@ -12,7 +12,8 @@ body{
 
 @layer components{
 .inputt{
-        @apply border-solid border-blue-200 border-2 rounded-md w-full mt-3 ;
+        @apply border-solid border-blue-200 border-2 rounded-md w-full mt-3 focus:border-blue-600
+        hover:border-blue-500 focus-within:outline;
     }
     .btn{
         @apply bg-red-600 text-white font-bold py-2 px-4 rounded;
@@ -25,5 +26,8 @@ body{
     }
     .btntMS{
         @apply text-white h-5 ;
+    }
+    .selectSidBar{
+        @apply outline-none w-full bg-transparent text-center text-white;
     }
 }

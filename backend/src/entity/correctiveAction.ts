@@ -8,4 +8,7 @@ export class CorrectiveAction {
     action!: string;
     @Column()
     status!: string;
+    @Column()
+    anomaly_id!:number
+    
 }

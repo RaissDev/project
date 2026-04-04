@@ -45,6 +45,19 @@ router.delete("/users/delete/:id" , async (req , res)=>{
   }
 })
 
+router.put("/user/update/:id" , async (req , res)=>{
+  try{
+    const repo = AppDataSource.getRepository(users);
+    const id = Number(req.params.id)
+  const result = await repo.update(id, req.body)
+  res.json(result)
+  }catch(e){
+    console.log('error from api update user'+e)
+    res.status(500).json({e : 'API error'})
+  }
+  
+})
+
 router.get("/anomaly", async (req, res) => {
   const anomaly = await AppDataSource.getRepository(Anomaly).find();
   res.json(anomaly);
