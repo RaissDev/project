@@ -32,7 +32,7 @@ export class Inspection {
 
     @ManyToOne(()=>type_inspection,(type)=>type.type_inspection)
     @JoinColumn({name:'type_inspection_id'})
-    id_type_inspection!:type_inspection
+    typeInspection!:type_inspection
     @Column()
     date_debut!:Date;
     @Column()
