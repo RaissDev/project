@@ -30,7 +30,7 @@ export class Inspection {
     @OneToMany(()=>inspection_logs,(logs)=>logs.inspection)
     logs!:inspection_logs[]
 
-    @ManyToOne(()=>type_inspection,(type)=>type.type_inspection)
+    @ManyToOne(()=>type_inspection,(type)=>type.typeInspection)
     @JoinColumn({name:'type_inspection_id'})
     typeInspection!:type_inspection
     @Column()

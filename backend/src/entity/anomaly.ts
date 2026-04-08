@@ -1,7 +1,6 @@
 import { Entity, Column,OneToMany, PrimaryGeneratedColumn ,ManyToOne, JoinColumn ,OneToOne } from 'typeorm';
 import { Inspection } from './inspection';
-import { anomalie_logs } from './anomali_logs';
-
+import {anomalie_logs} from './anomalieLogs'
 @Entity()
 export class Anomaly {
     @PrimaryGeneratedColumn()
