@@ -15,6 +15,6 @@ export class famillie {
     @Column()
     code: string;
 
-    @ManyToOne(() => groupe, (group) => group.id_famillie)
+    @ManyToOne(() => groupe, (group) => group.famillie)
     groupe!: groupe;
 }

@@ -12,9 +12,9 @@ export class anomalie_logs {
     @Column()
     descreption!:string
 
-    @ManyToOne(() => Anomaly, (anomaly) => anomaly.anomalie )
-    @JoinColumn({name:'id_Anomalie'})
-    id_anomalie: Anomaly;
+    @ManyToOne(() => Anomaly, (anomaly) => anomaly.logs )
+    @JoinColumn({name:'Anomalie_id'})
+    anomalie: Anomaly;
     
 }
 

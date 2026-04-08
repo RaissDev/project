@@ -27,11 +27,11 @@ export class Inspection {
     @OneToMany(() => Anomaly, anomaly => anomaly.inspection)
     anomalies!: Anomaly[];
 
-    @OneToMany(()=>inspection_logs,(logs)=>logs.id_inspection)
-    logs!:inspection_logs
+    @OneToMany(()=>inspection_logs,(logs)=>logs.inspection)
+    logs!:inspection_logs[]
 
     @ManyToOne(()=>type_inspection,(type)=>type.type_inspection)
-    @JoinColumn({name:'id_type_inspection'})
+    @JoinColumn({name:'type_inspection_id'})
     id_type_inspection!:type_inspection
     @Column()
     date_debut!:Date;

@@ -17,6 +17,6 @@ export class Asset {
     inspection!: Inspection[]
     
     @ManyToOne(()=>groupe,(group)=>group.actif)
-    @JoinColumn({name:'id_goupe'})
-    id_groupe!:groupe;
+    @JoinColumn({name:'goupe_id'})
+    groupe!:groupe;
 }

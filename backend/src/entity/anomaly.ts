@@ -18,8 +18,8 @@ export class Anomaly {
     @Column()
     create_at!: Date
 
-    @OneToMany(()=>anomalie_logs,(logs)=>logs.id_anomalie)
-    anomalie!:anomalie_logs
+    @OneToMany(()=>anomalie_logs,(logs)=>logs.anomalie)
+    logs!:anomalie_logs[]
     
 }
 

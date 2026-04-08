@@ -16,6 +16,6 @@ export class inspection_logs {
 
     @ManyToOne(()=>Inspection,(inspection)=>inspection.logs)
     @JoinColumn({name:'id_inspection'})
-    id_inspection!:Inspection
+    inspection!:Inspection
 }
 
