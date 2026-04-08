@@ -10,7 +10,7 @@ export class type_inspection {
     nom!:string
     @Column()
     fequence!:string
-    @ManyToOne(()=>Inspection,(inspection)=>inspection.id_type_inspection)
+    @OneToMany(()=>Inspection,(inspection)=>inspection.id_type_inspection)
     type_inspection!:Inspection
     
     @ManyToOne(()=>groupe,(group)=>group.type)

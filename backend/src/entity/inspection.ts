@@ -29,7 +29,8 @@ export class Inspection {
 
     @OneToMany(()=>inspection_logs,(logs)=>logs.id_inspection)
     logs!:inspection_logs
-    @OneToMany(()=>type_inspection,(type)=>type.type_inspection)
+
+    @ManyToOne(()=>type_inspection,(type)=>type.type_inspection)
     @JoinColumn({name:'id_type_inspection'})
     id_type_inspection!:type_inspection
     @Column()
