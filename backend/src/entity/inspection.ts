@@ -1,5 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-
+import { Entity, Column, PrimaryGeneratedColumn , ManyToOne, OneToMany, JoinColumn } from "typeorm";
+import { users } from "./users";
+import { Anomaly } from "./anomaly";
+import { Asset } from "./asset";
+import { type_inspection } from "./type_inspection";
+import { inspection_logs } from "./inspectio_logs";
 @Entity()
 export class Inspection {
     @PrimaryGeneratedColumn()
@@ -7,16 +11,49 @@ export class Inspection {
     @Column()
     date!: Date;
     @Column()
-    type_actife!: string;
-    @Column()
-    inspecteur!: string;
-    @Column()
     priority!: string;
     @Column()
     description!: string;
-    @Column()
-    inspecteur_id!:number
-    @Column()
-    asset_id!:number
+
+    @ManyToOne(() => users, user => user.inspeciton)
+    @JoinColumn({ name: "inspector_id" })
+    inspector!: users;
+
     
+    @ManyToOne(() => Asset, asset => asset.inspection)
+    @JoinColumn({ name: "asset_id" })
+    asset!: Asset;
+    
+    @OneToMany(() => Anomaly, anomaly => anomaly.inspection)
+    anomalies!: Anomaly[];
+
+    @OneToMany(()=>inspection_logs,(logs)=>logs.id_inspection)
+    logs!:inspection_logs
+    @OneToMany(()=>type_inspection,(type)=>type.type_inspection)
+    @JoinColumn({name:'id_type_inspection'})
+    id_type_inspection!:type_inspection
+    @Column()
+    date_debut!:Date;
+    @Column()
+    date_fin!:Date;
+    @Column()
+    create_by!:string
+    @Column()
+    create_at!:Date
+    @Column()
+    validiate_by!:string
+    @Column()
+    validate_at!:Date
+    @Column()
+    Commentare_validate!:string
+    @Column()
+    rejected_by!:string
+    @Column()
+    rejected_at!:Date
+    @Column()
+    motif_rejecte!:string
+    @Column()
+    clotured_by!:string
+    @Column()
+    clotured_at!:Date
 }

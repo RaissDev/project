@@ -1,4 +1,6 @@
-import { Entity ,Column, PrimaryGeneratedColumn} from 'typeorm';
+import { Entity ,Column, PrimaryGeneratedColumn , OneToMany,JoinColumn,ManyToOne} from 'typeorm';
+import { Inspection } from './inspection';
+import { groupe } from './groupe';
 
 @Entity()
 export class Asset {
@@ -10,4 +12,11 @@ export class Asset {
     type!: string;
     @Column()
     location!: number;
+
+    @OneToMany(()=>Inspection , inspection => inspection.asset)
+    inspection!: Inspection[]
+    
+    @ManyToOne(()=>groupe,(group)=>group.actif)
+    @JoinColumn({name:'id_goupe'})
+    id_groupe!:groupe;
 }

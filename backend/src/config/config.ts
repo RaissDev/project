@@ -4,6 +4,7 @@ import { users } from "../entity/users";
 import { Anomaly } from "../entity/anomaly";
 import { Asset } from "../entity/asset";
 import { Inspection } from "../entity/inspection";
+
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
