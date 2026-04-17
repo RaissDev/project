@@ -15,7 +15,7 @@ export const usersController = {
 
     async findAll(req: Request, res: Response) {
         try {
-            const data = users.findAll();
+            const data = await users.findAll();
             res.json(data);
         } catch (e) {
             res.status(400).json({ message: "error find all users ", e });
@@ -25,7 +25,7 @@ export const usersController = {
     async findOne(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const data = users.findOne(id)
+            const data = await users.findOne(id)
             res.json(data)
         } catch (e) {
             res.status(400).json({ message: "error find one users ", e });
@@ -35,7 +35,8 @@ export const usersController = {
     async update(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = users.update(id, req.body)
+            const result = await users.update(id, req.body)
+            res.json(result)
         } catch (e) {
             res.status(400).json({ message: "error Update users ", e });
         }
@@ -44,7 +45,7 @@ export const usersController = {
     async delete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = users.delete(id)
+            const result = await users.delete(id)
             res.json(result)
         } catch (e) {
             res.status(400).json({ message: "error Update users ", e });
@@ -54,7 +55,7 @@ export const usersController = {
     async softDelete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = users.softDelete(id)
+            const result = await users.softDelete(id)
             if ((await result).affected === 0) {
                 res.status(404).json({ error: "Inspection not found" });
             } else {

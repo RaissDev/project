@@ -1,8 +1,8 @@
 import { AppDataSource } from "../config/config";
 import { Anomaly } from "../entity/anomaly"; 
-
+import { anomalie_logs } from "../entity/anomalieLogs";
 const anomalieRepository = AppDataSource.getRepository(Anomaly);
-
+const anomalieLogsRepository = AppDataSource.getRepository(anomalie_logs)
 export class anomalieService {
 
     async create(anomalie: any) {

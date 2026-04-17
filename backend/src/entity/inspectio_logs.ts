@@ -8,11 +8,9 @@ export class inspection_logs {
     @Column()
     create_by!:string
     @Column()
-    create_at!:string
+    create_at!:Date
     @Column()
-    date_time!:Date
-    @Column()
-    descreption!:string
+    description!:string
     @ManyToOne(()=>Inspection,(inspection)=>inspection.logs)
     @JoinColumn({name:'id_inspection'})
     inspection!:Inspection

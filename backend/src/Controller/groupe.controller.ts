@@ -15,8 +15,8 @@ export const groupeController = {
 
     async findAll(req: Request, res: Response) {
         try {
-            const data = groupe.findAll();
-            res.json(data);
+            const data = await groupe.findAll();
+            res.status(200).json(data);
         } catch (e) {
             res.status(400).json({ message: "error find all groupe ", e });
         }
@@ -25,7 +25,7 @@ export const groupeController = {
     async findOne(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const data = groupe.findOne(id)
+            const data = await groupe.findOne(id)
             res.json(data)
         } catch (e) {
             res.status(400).json({ message: "error find one groupe ", e });
@@ -35,7 +35,8 @@ export const groupeController = {
     async update(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = groupe.update(id, req.body)
+            const result = await groupe.update(id, req.body)
+            res.status(200).json(result)
         } catch (e) {
             res.status(400).json({ message: "error Update groupe ", e });
         }
@@ -44,7 +45,7 @@ export const groupeController = {
     async delete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = groupe.delete(id)
+            const result = await groupe.delete(id)
             res.json(result)
         } catch (e) {
             res.status(400).json({ message: "error Update groupe ", e });
@@ -54,11 +55,11 @@ export const groupeController = {
     async softDelete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id)
-            const result = groupe.softDelete(id)
+            const result = await groupe.softDelete(id)
             if ((await result).affected === 0) {
                 res.status(404).json({ error: "Inspection not found" });
             } else {
-                res.json({ message: "Inspection deleted successfully" });
+                res.json({ message: "Inspection sofe deleted successfully" });
             }
             res.json(result)
         } catch (e) {

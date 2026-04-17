@@ -15,7 +15,7 @@ export const InspectionController = {
 
     async findAll(req: Request, res: Response) {
         try {
-            const data = Inspection.findAll();
+            const data = await Inspection.findAll();
             res.json(data);
         } catch (e) {
             res.status(400).json({ message: "error find all Inspection ", e });
@@ -25,7 +25,7 @@ export const InspectionController = {
     async findOne(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const data = Inspection.findOne(id)
+            const data = await Inspection.findOne(id)
             res.json(data)
         }catch(e){
             res.status(400).json({ message: "error find one Inspection ", e });
@@ -35,7 +35,8 @@ export const InspectionController = {
     async update(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = Inspection.update(id,req.body)
+            const result = await Inspection.update(id,req.body)
+            res.json(result)
         }catch(e){
             res.status(400).json({ message: "error Update Inspection ", e });
         }
@@ -44,7 +45,7 @@ export const InspectionController = {
     async delete(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = Inspection.delete(id)
+            const result = await Inspection.delete(id)
             res.json(result)
         }catch(e){
             res.status(400).json({ message: "error Update Inspection ", e });
@@ -54,7 +55,12 @@ export const InspectionController = {
     async softDelete(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = Inspection.softDelete(id)
+            const result = await Inspection.softDelete(id)
+            if ((await result).affected === 0) {
+                res.status(404).json({ error: "Inspection not found" });
+            } else {
+                res.json({ message: "Inspection sofe deleted successfully" });
+            }
             res.json(result)
         }catch(e){
             res.status(400).json({ message: "error Update Inspection ", e });

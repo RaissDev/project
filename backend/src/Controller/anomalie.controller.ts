@@ -15,7 +15,7 @@ export const anomalieController = {
 
     async findAll(req: Request, res: Response) {
         try {
-            const data = anomalie.findAll();
+            const data = await anomalie.findAll();
             res.json(data);
         } catch (e) {
             res.status(400).json({ message: "error find all anomalie ", e });
@@ -25,7 +25,7 @@ export const anomalieController = {
     async findOne(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const data = anomalie.findOne(id)
+            const data = await anomalie.findOne(id)
             res.json(data)
         }catch(e){
             res.status(400).json({ message: "error find one anomalie ", e });
@@ -35,7 +35,7 @@ export const anomalieController = {
     async update(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = anomalie.update(id,req.body)
+            const result = await anomalie.update(id,req.body)
         }catch(e){
             res.status(400).json({ message: "error Update anomalie ", e });
         }
@@ -44,7 +44,7 @@ export const anomalieController = {
     async delete(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = anomalie.delete(id)
+            const result = await anomalie.delete(id)
             res.json(result)
         }catch(e){
             res.status(400).json({ message: "error Update anomalie ", e });
@@ -54,7 +54,12 @@ export const anomalieController = {
     async softDelete(req: Request, res: Response){
         try{
             const id = Number(req.params.id)
-            const result = anomalie.softDelete(id)
+            const result = await anomalie.softDelete(id)
+            if ((await result).affected === 0) {
+                res.status(404).json({ error: "Inspection not found" });
+            } else {
+                res.json({ message: "Inspection sofe deleted successfully" });
+            }
             res.json(result)
         }catch(e){
             res.status(400).json({ message: "error Update anomalie ", e });
