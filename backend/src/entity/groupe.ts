@@ -1,24 +1,33 @@
-import { Entity ,PrimaryGeneratedColumn ,Column ,OneToMany ,JoinTable ,OneToOne,JoinColumn} from 'typeorm';
-import { famillie } from './famillie';
-import { Asset } from './asset';
-import { type_inspection } from './type_inspection';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToMany,
+    JoinTable,
+    OneToOne,
+    JoinColumn,
+    ManyToOne,
+} from "typeorm";
+import { famille } from "./famille";
+import { Asset } from "./asset";
+import { type_inspection } from "./type_inspection";
 
 @Entity()
 export class groupe {
     @PrimaryGeneratedColumn()
-    id!:number
+    id!: number;
     @Column()
-    nome!:string
+    nom!: string;
     @Column()
-    code!:string
+    code!: string;
 
-    @OneToMany(()=>famillie,(fam)=>fam.groupe)
-    famillie:famillie[]
+    @ManyToOne(() => famille, (fam) => fam.groupe)
+    @JoinColumn({ name: "famille_id" })
+    famillie: famille;
 
-    @OneToMany(()=>Asset,(actif)=>actif.groupe)
-    actif!:Asset[]
+    @OneToMany(() => Asset, (actif) => actif.groupe)
+    actif!: Asset[];
 
-    @OneToMany(()=>type_inspection,(type)=>type.groupe)
-    type!:type_inspection[]
+    @OneToMany(() => type_inspection, (type) => type.groupe)
+    type!: type_inspection[];
 }
-

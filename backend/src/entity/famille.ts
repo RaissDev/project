@@ -2,12 +2,12 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    ManyToOne
+    OneToMany
 } from "typeorm";
 import { groupe } from "./groupe";
 
 @Entity()
-export class famillie {
+export class famille {
     @PrimaryGeneratedColumn()
     id!: number;
     @Column()
@@ -15,6 +15,6 @@ export class famillie {
     @Column()
     code: string;
 
-    @ManyToOne(() => groupe, (group) => group.famillie)
+    @OneToMany(() => groupe, (group) => group.famillie)
     groupe!: groupe;
 }

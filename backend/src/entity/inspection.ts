@@ -14,11 +14,11 @@ export class Inspection {
     priority!: string;
     @Column()
     description!: string;
-
-    @ManyToOne(() => users, user => user.inspeciton)
+    @Column()
+    status!:string    // planifée /  en cours / terminée / validée / rejetée
+    @OneToMany(() => users, user => user.inspeciton)
     @JoinColumn({ name: "inspector_id" })
     inspector!: users;
-
     
     @ManyToOne(() => Asset, asset => asset.inspection)
     @JoinColumn({ name: "asset_id" })
@@ -30,31 +30,32 @@ export class Inspection {
     @OneToMany(()=>inspection_logs,(logs)=>logs.inspection)
     logs!:inspection_logs[]
 
-    @ManyToOne(()=>type_inspection,(type)=>type.typeInspection)
+    @ManyToOne(()=>type_inspection,(type)=>type.Inspection)
     @JoinColumn({name:'type_inspection_id'})
     typeInspection!:type_inspection
+
     @Column()
     date_debut!:Date;
     @Column()
     date_fin!:Date;
-    @Column()
-    create_by!:string
+    @ManyToOne(()=>users , user =>user.createInspection)
+    create_by!:users
     @Column()
     create_at!:Date
-    @Column()
-    validiate_by!:string
+    @ManyToOne(()=>users , user =>user.validateInspection)
+    validiate_by!:users
     @Column()
     validate_at!:Date
     @Column()
     Commentare_validate!:string
-    @Column()
-    rejected_by!:string
+    @ManyToOne(()=>users , user =>user.rejectedInspection)
+    rejected_by!:users
     @Column()
     rejected_at!:Date
     @Column()
     motif_rejecte!:string
-    @Column()
-    clotured_by!:string
+    @ManyToOne(()=>users , user =>user.cloturedInspection)
+    clotured_by!:users
     @Column()
     clotured_at!:Date
 }

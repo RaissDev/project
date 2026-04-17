@@ -8,7 +8,7 @@ export class Anomaly {
     @Column()
     description!: string;
     @Column()
-    status!: string;
+    status!: string;  // ouverte / en analyse / en cours / résolue / clôturée
     @Column()
     deadline!: Date;
     @ManyToOne(()=>Inspection ,inspection =>inspection.anomalies)

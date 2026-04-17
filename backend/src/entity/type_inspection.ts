@@ -11,7 +11,7 @@ export class type_inspection {
     @Column()
     fequence!:string
     @OneToMany(()=>Inspection,(inspection)=>inspection.typeInspection)
-    typeInspection!:Inspection[]
+    Inspection!:Inspection[]
     
     @ManyToOne(()=>groupe,(group)=>group.type)
     @JoinColumn({name:'id_groupe'})

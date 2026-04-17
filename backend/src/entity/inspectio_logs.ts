@@ -13,7 +13,6 @@ export class inspection_logs {
     date_time!:Date
     @Column()
     descreption!:string
-
     @ManyToOne(()=>Inspection,(inspection)=>inspection.logs)
     @JoinColumn({name:'id_inspection'})
     inspection!:Inspection

@@ -7,7 +7,7 @@ import { Inspection } from "../entity/inspection";
 import { type_inspection } from "../entity/type_inspection";
 import { inspection_logs } from "../entity/inspectio_logs";
 import { groupe } from "../entity/groupe";
-import { famillie } from "../entity/famillie";
+import { famille } from "../entity/famille";
 import { anomalie_logs } from "../entity/anomalieLogs";
 
 export const AppDataSource = new DataSource({
@@ -19,7 +19,17 @@ export const AppDataSource = new DataSource({
   database: "GMO",
   synchronize: true,
   logging: true,
-  entities: [users, Anomaly, Asset, Inspection,type_inspection,groupe,famillie,anomalie_logs,inspection_logs],
+  entities: [
+    users,
+    Anomaly,
+    Asset,
+    Inspection,
+    type_inspection,
+    groupe,
+    famille,
+    anomalie_logs,
+    inspection_logs,
+  ],
   subscribers: [],
   migrations: [],
 });

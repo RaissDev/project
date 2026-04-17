@@ -10,11 +10,14 @@ export class anomalie_logs {
     @Column()
     create_at!:Date
     @Column()
-    descreption!:string
+    description!:string
 
     @ManyToOne(() => Anomaly, (anomaly) => anomaly.logs )
-    @JoinColumn({name:'Anomalie_id'})
-    anomalie: Anomaly;
-    
+    @JoinColumn({name:'anomalie_id'})
+    anomalie!: Anomaly;
+    @Column()
+    status_before!:string
+    @Column()
+    statusAvon_after!:string
 }
 
