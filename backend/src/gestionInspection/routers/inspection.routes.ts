@@ -1,0 +1,11 @@
+import { InspectionController } from "../controllers/inspection.controller";
+import { Router } from "express";
+
+const router = Router();
+
+router.post("/create", InspectionController.create);
+router.get("/search/:id", InspectionController.findOne);
+router.get("/", InspectionController.findAll);
+router.delete("/softdelete/:id", InspectionController.softDelete);
+router.put("/update/:id", InspectionController.update);
+export default router;

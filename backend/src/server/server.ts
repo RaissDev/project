@@ -2,24 +2,22 @@ import express from "express";
 import { Router } from "express";
 import { AppDataSource } from "../config/config";
 import cors from "cors";
-import assetRoutes from '../router/asset.routes'
-import familleRoutes from '../router/famille.routes'
-import groupRout from '../router/groupe.routes'
-import inspectionRout from '../router/inspection.routes'
-import userRout from '../router/users.routes'
+import assetRoutes from "../GestionAsset/routers/asset.routes";
+import familleRoutes from "../GestionAsset/routers/famille.routes";
+import groupRout from "../GestionAsset/routers/groupe.routes";
+import inspectionRout from "../gestionInspection/routers/inspection.routes";
+import userRout from "../gestionUsers/router/users.routes";
 const port = 3004;
 const app = express();
 const router = Router();
 router.use(cors());
 router.use(express.json());
 
-app.use('/api/assets',assetRoutes)
-app.use('/api/groupes',familleRoutes)
-app.use('/api/familles',groupRout)
-app.use('/api/inspections',inspectionRout)
-app.use('/api/users',userRout)
-
-
+app.use("/api/assets", assetRoutes);
+app.use("/api/groupes", familleRoutes);
+app.use("/api/familles", groupRout);
+app.use("/api/inspections", inspectionRout);
+app.use("/api/users", userRout);
 
 AppDataSource.initialize()
   .then(() => {

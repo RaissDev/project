@@ -1,14 +1,14 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { users } from "../entity/users";
-import { Anomaly } from "../entity/anomaly";
-import { Asset } from "../entity/asset";
-import { Inspection } from "../entity/inspection";
-import { type_inspection } from "../entity/type_inspection";
-import { inspection_logs } from "../entity/inspectio_logs";
-import { groupe } from "../entity/groupe";
-import { famille } from "../entity/famille";
-import { anomalie_logs } from "../entity/anomalieLogs";
+import { users } from "../gestionUsers/entity/users";
+import { Anomaly } from "../gestionAnomalie/entitys/anomaly";
+import { Asset } from "../GestionAsset/entitys/asset";
+import { Inspection } from "../gestionInspection/entitys/inspection";
+import { type_inspection } from "../gestionInspection/entitys/type_inspection";
+import { inspection_logs } from "../gestionInspection/entitys/inspectionLogs"; 
+import { groupe } from "../GestionAsset/entitys/groupe";
+import { famille } from "../GestionAsset/entitys/famille";
+import { anomalie_logs } from "../gestionAnomalie/entitys/anomalieLogs";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
