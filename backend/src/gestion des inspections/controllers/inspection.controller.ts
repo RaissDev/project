@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { InspectionService } from "../services/inspection.service";
+import { groupeController } from "../../Gestion des actifs/controllers/groupe.controller";
 
 const inspection = new InspectionService();
 
@@ -34,6 +35,26 @@ export const InspectionController = {
       res.status(400).json({ message: "error find all Inspection ", e });
     }
   },
+
+  async findAllDeleted(req: Request, res: Response) {
+      try {
+        const data = await inspection.findAllDeleted();
+        return res.json(data);
+      } catch (e) {
+        res.json({ message: "error find all deleted inspection ", e });
+      }
+    },
+  
+    async restore(req:Request,res:Response){
+      try{
+        const id =Number(req.params.id)
+      const result =  await inspection.restore(id)
+      res.status(200).json(result)
+      }catch(e){
+        res.json({ message: "error restore inspection " });
+      }
+      
+    },
 
   async findOne(req: Request, res: Response) {
     try {

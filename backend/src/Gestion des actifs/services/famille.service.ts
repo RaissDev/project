@@ -1,3 +1,4 @@
+import { IsNull, Not } from "typeorm";
 import { AppDataSource } from "../../config/config";
 import { Famille } from "../entities/famille.entitie";
 
@@ -13,6 +14,10 @@ export class FamilleServices {
     return await familleRepostory.find();
   }
 
+  async findAllDeleted() {
+      return await familleRepostory.find({withDeleted:true ,where : {deleteAt: Not(IsNull())} });
+    }
+
   async findOne(id: number) {
     return await familleRepostory.findOneBy({ id });
   }
@@ -26,7 +31,15 @@ export class FamilleServices {
     return {message : `id : ${id} deleted by user : ${user}`}
   }
 
+  async restore(id:number){
+    const result = await familleRepostory.restore(id)
+    if(result.affected === 0){return null}
+    return {message : 'famille restore successfolly'};
+  }
+
   async update(id: number, data: any) {
     return await familleRepostory.update(id, data);
   }
 }
+
+

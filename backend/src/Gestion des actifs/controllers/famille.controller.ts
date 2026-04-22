@@ -22,6 +22,15 @@ export const familleController = {
     }
   },
 
+  async findAllDeleted(req: Request, res: Response) {
+      try {
+        const data = await famille.findAllDeleted();
+        return res.json(data);
+      } catch (e) {
+        res.json({ message: "error find all deleted famille ", e });
+      }
+    },
+
   async findOne(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
@@ -60,4 +69,15 @@ export const familleController = {
       res.status(400).json({ message: "error Update famille ", e });
     }
   },
+
+  async restore(req:Request,res:Response){
+      try{
+        const id =Number(req.params.id)
+      const result =  await famille.restore(id)
+      res.status(200).json(result)
+      }catch(e){
+        res.json({ message: "error restore famille " });
+      }
+      
+    }
 };

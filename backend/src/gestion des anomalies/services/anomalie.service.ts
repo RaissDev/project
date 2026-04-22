@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../config/config";
 import { Anomalie } from "../entitys/anomaly.entitie"; 
 import { anomalie_logs } from "../entitys/anomalieLogs.entitie";
+import { IsNull, Not } from "typeorm";
 const anomalieRepository = AppDataSource.getRepository(Anomalie);
 const anomalieLogsRepository = AppDataSource.getRepository(anomalie_logs);
 export class AnomalieService {
@@ -39,6 +40,15 @@ export class AnomalieService {
     return await anomalieRepository.find();
   }
 
+   async findAllDeleted() {
+    return await anomalieRepository.find({withDeleted:true ,where : {deleteAt: Not(IsNull())} });
+  }
+
+  async restore(id:number){
+    const result = await anomalieRepository.restore(id)
+    if(result.affected === 0){return null}
+    return {message : 'anomalie restore successfolly'};
+  }
   async findOne(id: number) {
     return await anomalieRepository.findOneBy({ id });
   }

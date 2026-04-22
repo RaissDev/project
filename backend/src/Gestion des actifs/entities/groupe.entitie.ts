@@ -33,6 +33,6 @@ export class Groupe {
   @DeleteDateColumn()
       deleteAt!: Date
     
-      @Column()
+      @Column({nullable:true})
       deleteBy!: string;
 }

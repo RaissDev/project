@@ -1,3 +1,4 @@
+import { IsNull, Not } from "typeorm";
 import { AppDataSource } from "../../config/config";
 import { Groupe } from "../entities/groupe.entitie";
 
@@ -13,6 +14,10 @@ export class GroupeService {
     return await groupeRepository.find();
   }
 
+  async findAllDeleted() {
+      return await groupeRepository.find({withDeleted:true ,where : {deleteAt: Not(IsNull())} });
+    }
+
   async findOne(id: number) {
     return await groupeRepository.findOneBy({ id });
   }
@@ -24,6 +29,12 @@ export class GroupeService {
     await groupeRepository.save(groupe)
     await groupeRepository.softDelete({ id });
     return {message : `id : ${id} delete by user : ${user}`}
+  }
+
+  async restore(id:number){
+    const result = await groupeRepository.restore(id)
+    if(result.affected === 0){return null}
+    return {message : 'groupe restore successfolly'};
   }
 
   async update(id: number, data: any) {

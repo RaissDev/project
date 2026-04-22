@@ -22,6 +22,26 @@ export const anomalieController = {
     }
   },
 
+  async findAllDeleted(req: Request, res: Response) {
+    try {
+      const data = await anomalie.findAllDeleted();
+      return res.json(data);
+    } catch (e) {
+      res.json({ message: "error find all deleted anomalie ", e });
+    }
+  },
+
+  async restore(req:Request,res:Response){
+    try{
+      const id =Number(req.params.id)
+    const result =  await anomalie.restore(id)
+    res.status(200).json(result)
+    }catch(e){
+      res.json({ message: "error restore anomalie " });
+    }
+    
+  },
+
   async findOne(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
@@ -31,6 +51,7 @@ export const anomalieController = {
       res.status(400).json({ message: "error find one anomalie ", e });
     }
   },
+  
 
   async update(req: Request, res: Response) {
     try {

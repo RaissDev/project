@@ -18,7 +18,16 @@ export const ActifController = {
       const data = await actif.findAll();
       res.json(data);
     } catch (e) {
-      res.status(400).json({ message: "error find all actif ", e });
+      res.json({ message: "error find all actif ", e });
+    }
+  },
+
+  async findAllDeleted(req: Request, res: Response) {
+    try {
+      const data = await actif.findAllDeleted();
+      return res.json(data);
+    } catch (e) {
+      res.json({ message: "error find all deleted actif ", e });
     }
   },
 
@@ -59,4 +68,15 @@ export const ActifController = {
       res.status(400).json({ message: "error delete actif " });
     }
   },
+
+  async restore(req:Request,res:Response){
+    try{
+      const id =Number(req.params.id)
+    const result =  await actif.restore(id)
+    res.status(200).json(result)
+    }catch(e){
+      res.json({ message: "error restore actif " });
+    }
+    
+  }
 };

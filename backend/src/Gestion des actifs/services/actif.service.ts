@@ -1,3 +1,4 @@
+import { IsNull, Not } from "typeorm";
 import { AppDataSource } from "../../config/config";
 import { Actif } from "../entities/actif.entitie";
 
@@ -13,6 +14,10 @@ export class ActifService {
     return await actifRepository.find();
   }
 
+  async findAllDeleted() {
+    return await actifRepository.find({withDeleted:true ,where : {deleteAt: Not(IsNull())} });
+  }
+
   async findOne(id: number) {
     return await actifRepository.findOneBy({ id });
   }
@@ -24,6 +29,12 @@ export class ActifService {
     await actifRepository.save(actif);
     await actifRepository.softDelete({ id });
     return {message : `id : ${id} deleted by user : ${user}`}
+  }
+
+  async restore(id:number){
+    const result = await actifRepository.restore(id)
+    if(result.affected === 0){return null}
+    return {message : 'actif restore successfolly'};
   }
 
   async update(id: number, newData: any) {

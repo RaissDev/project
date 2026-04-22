@@ -1,3 +1,4 @@
+import { IsNull, Not } from "typeorm";
 import { AppDataSource } from "../../config/config";
 import { Inspection } from "../entities/inspection.entitie";
 import { inspection_logs } from "../entities/inspectionLogs.entitie"; 
@@ -33,9 +34,19 @@ export class InspectionService {
     return await inspectionRepository.save(newGrourpe);
   }
 
+  async restore(id:number){
+    const result = await inspectionRepository.restore(id)
+    if(result.affected === 0){return null}
+    return {message : 'inspection restore successfully'};
+  }
+
   async findAll() {
     return await inspectionRepository.find();
   }
+
+  async findAllDeleted() {
+      return await inspectionRepository.find({withDeleted:true ,where : {deleteAt: Not(IsNull())} });
+    }
 
   async findOne(id: number) {
     return await inspectionRepository.findOneBy({ id });

@@ -16,6 +16,6 @@ export class Famille {
   @DeleteDateColumn()
     deleteAt!: Date
   
-    @Column()
+    @Column({ nullable:true})
     deleteBy!: string;
 }
